@@ -23,4 +23,12 @@ public class Pipe : MonoBehaviour
         pos.x -= speed;
         GetComponent<Transform>().position = pos;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            gm.GetComponent<GameManager>().AddScore(1);
+        }
+    }
 }
