@@ -20,5 +20,10 @@ public class GameManager : MonoBehaviour
         score += amount;
         Debug.Log(score);
     }
-    
+
+
+    public void StopGame()
+    {
+        Debug.Log("Game stopped");
+    }
 }
