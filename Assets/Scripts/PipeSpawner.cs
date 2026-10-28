@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PipeSpawner : MonoBehaviour
 {
-    
+    public float timeToSpawn = 3;
     public GameObject pipePrefab;
     public Transform spawnTop;
     public Transform spawnBottom;
@@ -10,7 +10,7 @@ public class PipeSpawner : MonoBehaviour
    
     void Start()
     {
-        InvokeRepeating("CreateNewPipe",3, 3);   
+        InvokeRepeating("CreateNewPipe",timeToSpawn, timeToSpawn);   
     }
     
     // Update is called once per frame
@@ -23,6 +23,8 @@ public class PipeSpawner : MonoBehaviour
 
     void CreateNewPipe()
     {
-        Instantiate(pipePrefab, Vector3.zero, Quaternion.identity);
+        float randomY = Random.Range(spawnBottom.position.y, spawnTop.position.y);
+        Vector3 newPos = new Vector3(spawnTop.position.x, randomY, spawnTop.position.z);
+        Instantiate(pipePrefab, newPos, Quaternion.identity);
     }
 }
