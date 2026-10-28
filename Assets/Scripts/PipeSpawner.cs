@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PipeSpawner : MonoBehaviour
 {
@@ -17,14 +19,22 @@ public class PipeSpawner : MonoBehaviour
     void Update()
     {
         
-            
-        
     }
 
     void CreateNewPipe()
     {
         float randomY = Random.Range(spawnBottom.position.y, spawnTop.position.y);
         Vector3 newPos = new Vector3(spawnTop.position.x, randomY, spawnTop.position.z);
-        Instantiate(pipePrefab, newPos, Quaternion.identity);
+        GameObject o = Instantiate(pipePrefab, newPos, Quaternion.identity);
+        o.transform.parent = transform;
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "PIPE")
+        {
+            Destroy(other.gameObject.transform.parent.gameObject);
+        }
     }
 }
