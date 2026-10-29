@@ -12,7 +12,7 @@ public class PipeSpawner : MonoBehaviour
    
     void Start()
     {
-        InvokeRepeating("CreateNewPipe",timeToSpawn, timeToSpawn);   
+        InvokeRepeating("CreateNewPipe",0, timeToSpawn);   
     }
     
     // Update is called once per frame
